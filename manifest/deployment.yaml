@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-deployment
+  namespace: springapp
+  labels:
+    app: springapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 20%
+  minReadySeconds: 60
+  template:
+    metadata:
+      labels:
+        app: springapp
+    spec:
+      terminationGracePeriodSeconds: 1800
+      containers:
+      - name: springbootapp
+        image: ashokdocker2022/spring-boot-mongo:v1
+        imagePullPolicy: IfNotPresent
+          #command: ["catalina.sh", "run"]
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+        - name: dockercred
