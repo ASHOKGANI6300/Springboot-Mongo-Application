@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-deployment
-  namespace: springapp
+  name: mongo-deployment
+  namespace: mongoargo
   labels:
     app: springapp
 spec:
