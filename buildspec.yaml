@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+     
+  pre_build:
+    commands:
+      - echo "Pre-build phase..."
+      
+  build:
+    commands:
+      - echo "Building the application with Maven..."
+      - mvn clean install -Dmaven.test.skip=true # Example: Skip tests during build
+  post_build:
+    commands:
+      - echo "Running tests..."
+      - mvn test # Run tests explicitly in post-build
+      - echo "Packaging artifacts..."
+
+artifacts:
+  files:
+    - target/*.jar # Or target/*.war for web applications
+  discard-paths: yes # Discard the directory structure of the artifacts
