@@ -1,4 +1,5 @@
-<!doctype html>
+
+echo "<!doctype html>
 <html>
   <head>
     <title>This is the title of the webpage!</title>
@@ -8,4 +9,4 @@
           <h1>THIS IS MY CUSTOM STATIC HTML AWS WEBPAGE</p>
        <img src="https://igimage.indiaglitz.com/tamil/gallery/actress/nayantra/nayanthara291024_16.jpg" width="800" height=700">
   </body>
-</html>
+</html>"
