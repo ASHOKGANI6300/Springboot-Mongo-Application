@@ -47,5 +47,5 @@ images:
 options:
    machineType: 'E2_HIGHCPU_8'
    diskSizeGb: '2'
-   logging: GCS_ONLY
-   logsBucket: 'gs://cloudlbstoreweb'
+   logging: CLOUD_LOGGING_ONLY
+   #logsBucket: 'gs://cloudlbstoreweb'
