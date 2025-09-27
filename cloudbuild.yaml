@@ -6,24 +6,46 @@ steps:
       "us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA",
       "."
     ]
+    timeout: 600s
+    id: 'Deploy to Build an Image From Dockerfile'
   - name: "gcr.io/cloud-builders/docker"
     args: [
       "push",
       "us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA"
     ]
+    timeout: 600s
+    id: 'Deploy to Image Push to Artifact Repo'
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: "gcloud"
     args: [
-      "run",
-      "deploy",
-      "my-cloud-run-service",
-      "--image",
-      "us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA",
-      "--region",
-      "us-central1",
-      "--platform",
-      "managed",
-      "--allow-unauthenticated"
+      - 'run'
+      - 'deploy'
+      - 'webappspringservice' 
+      - '--image'
+      - 'us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA'
+      - '--region'
+      - 'us-central' 
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated' 
+      - '--memory'
+      - '512Mi' 
+      - '--cpu'
+      - '1' 
+      - '--min-instances'
+      - '1' 
+      - '--max-instances'
+      - '2' 
+      # Add more Cloud Run options as needed
+    id: 'Deploy to Cloud Run'
     ]
+    env:
+    - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
 images:
   - "us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA"
+options:
+   machineType: 'e2-standard-2'
+   diskSizeGb: '2'
+   logging: GCS_ONLY
+   defaultLogsBucket: 'gs://cloudlbstoreweb'
