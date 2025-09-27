@@ -48,4 +48,4 @@ options:
    machineType: 'E2_HIGHCPU_8'
    diskSizeGb: '2'
    logging: GCS_ONLY
-   defaultLogsBucket: 'gs://cloudlbstoreweb'
+   #defaultLogsBucket: 'gs://cloudlbstoreweb'
