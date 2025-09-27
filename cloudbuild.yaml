@@ -45,7 +45,7 @@ steps:
 images:
   - "us-central1-docker.pkg.dev/fresh-yen-467406-t1/myappregistry/springbootapp:$SHORT_SHA"
 options:
-   machineType: 'e2-standard-2'
+   machineType: 'E2_HIGHCPU_8'
    diskSizeGb: '2'
    logging: GCS_ONLY
    defaultLogsBucket: 'gs://cloudlbstoreweb'
